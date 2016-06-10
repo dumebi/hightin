@@ -81,18 +81,18 @@ $user = $_SESSION['admin_manager'];
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
-            
             <li>
-              <a href="all_products.php">
+              <a href="all_articles.php">
 			    <?php
 			 include_once('../storescripts/connect_to_mysql.php');
-				$shop_products = mysqli_query($conn,"select * from products") or die(mysqli_error($conn));
-				$productCount = mysqli_affected_rows($conn);
+				$shop_article = mysqli_query($conn,"select * from articles") or die(mysqli_error($conn));
+				$articleCount = mysqli_affected_rows($conn);
 				 // count the output amount
 			  ?>
-                <i class="fa fa-th"></i> <span> View all Products</span> <small class="label pull-right bg-green"><?php echo $productCount ?></small>
+                <i class="fa fa-th"></i> <span> View all Articles</span> <small class="label pull-right bg-green"><?php echo $articleCount ?></small>
               </a>
             </li>
+            
 			 <li>
               <a href="all_cards.php">
 			    <?php
@@ -101,6 +101,17 @@ $user = $_SESSION['admin_manager'];
 				 // count the output amount
 			  ?>
                 <i class="fa fa-th"></i> <span> View all Cards</span> <small class="label pull-right bg-green"><?php echo $cardCount ?></small>
+              </a>
+            </li>
+			<li>
+              <a href="all_products.php">
+			    <?php
+			 include_once('../storescripts/connect_to_mysql.php');
+				$shop_products = mysqli_query($conn,"select * from products") or die(mysqli_error($conn));
+				$productCount = mysqli_affected_rows($conn);
+				 // count the output amount
+			  ?>
+                <i class="fa fa-th"></i> <span> View all Products</span> <small class="label pull-right bg-green"><?php echo $productCount ?></small>
               </a>
             </li>
 			 <li>

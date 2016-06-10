@@ -14,7 +14,7 @@ if (!isset($_SESSION["admin_manager"])) {
 <?php 
 // Delete Item Question to Admin, and Delete Product if they choose
 if (isset($_GET['deleteid'])) {
-	echo 'Do you really want to delete product with ID of ' . $_GET['deleteid'] . '? <a href="all_products.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | <a href="all_products.php">No</a>';
+	echo 'Do you really want to delete product with ID of ' . $_GET['deleteid'] . '? <a href="all_articles.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | <a href="all_articles.php">No</a>';
 	exit();
 }
 if (isset($_GET['yesdelete'])) {
@@ -24,28 +24,28 @@ if (isset($_GET['yesdelete'])) {
 	$sql = mysqli_query($conn,"DELETE FROM products WHERE id='$id_to_delete' LIMIT 1") or die (mysqli_error($conn));
 	// unlink the image from server
 	// Remove The Pic -------------------------------------------
-   // $pictodelete = ("../../assets/images/product_images/$product_image1");
+   // $pictodelete = ("../../assets/images/product_images/$article_image1");
    /* if (file_exists($pictodelete)) {
        		    unlink($pictodelete);
     }*/
-	header("location: all_products.php"); 
+	header("location: all_articles.php"); 
     exit();
 }
 ?>
 <?php 
 if(isset($_POST['insertButton'])){
-	$pname = $_POST['pname'];
-	$product_desc = $_POST['product_desc'];
-	$product_image1 = $_FILES['product_image1']['name'];
-	$insertCard = mysqli_query($conn, 'Insert into products (name, image, body, date_added) values ("'.$pname.'", "'.$product_image1.'", "'.$product_desc.'", now())');
+	$articlename = $_POST['articlename'];
+	$article_desc = $_POST['article_desc'];
+	$article_image1 = $_FILES['article_image1']['name'];
+	$insertCard = mysqli_query($conn, 'Insert into articles (name, image, body, date_added) values ("'.$articlename.'", "'.$article_image1.'", "'.$article_desc.'", now())');
 	if($insertCard){
-		$product_image1 = $_FILES['product_image1']['name'];
-		$product_image_temp1 = $_FILES['product_image1']['tmp_name'];
-		move_uploaded_file($product_image_temp1,"../images/products/$product_image1");
-		echo" <script>alert('Product has been added');</script>"; 
-		echo" <script>window.location='all_products.php';</script>"; 
+		$article_image1 = $_FILES['article_image1']['name'];
+		$article_image_temp1 = $_FILES['article_image1']['tmp_name'];
+		move_uploaded_file($article_image_temp1,"../images/articles/$article_image1");
+		echo" <script>alert('Article has been added');</script>"; 
+		echo" <script>window.location='all_articles.php';</script>"; 
 	}else{
-		echo" <script>alert('Error! Product not added');</script>"; 
+		echo" <script>alert('Error! Article not added');</script>"; 
 	}
 }
 ?>
@@ -53,7 +53,7 @@ if(isset($_POST['insertButton'])){
 // This block grabs the whole list for viewing
 $user = $_SESSION['admin_manager'];
 $product_list = "";
-$shop_products = mysqli_query($conn,"select * from products") or die(mysqli_error($conn));
+$shop_products = mysqli_query($conn,"select * from articles") or die(mysqli_error($conn));
 $productCount = mysqli_affected_rows($conn);
 if ($productCount > 0) {
 	while($row = mysqli_fetch_array($shop_products)){ 
@@ -66,7 +66,7 @@ if ($productCount > 0) {
 				<tr>
 					<td>$name</td> 
 					<td>$date_added</td> 
-					<td><a class='tiny button' href='all_products.php?deleteid=$id'>delete</a></td>
+					<td><a class='tiny button' href='all_articles.php?deleteid=$id'>delete</a></td>
 					
 				  </tr>
 
@@ -82,7 +82,7 @@ if ($productCount > 0) {
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hightin Global LTD | All Products</title>
+    <title>Hightin Global LTD | All Articles</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -121,13 +121,13 @@ if ($productCount > 0) {
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            All Products
+            All Articles
            
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Products</a></li>
-            <li class="active">All Products</li>
+            <li class="active">All Articles</li>
           </ol>
         </section>
 
@@ -145,7 +145,7 @@ if ($productCount > 0) {
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-						<th>Product Name</th> 
+						<th>Article Name</th> 
 						<th>Date Added</th>
 						<th></th>
 						
@@ -165,25 +165,25 @@ if ($productCount > 0) {
               <div class="box">
                 <div class="box-header">
                  <h1>
-            New Products
+            New Article
           </h1>
                 </div><!-- /.box-header -->
                   <div class="box-body">
               <div class="row">
                 <div class="col-md-12">
                   <!-- /.form-group -->
-				  <form id="form1" name="form1" method="post" enctype="multipart/form-data" action="all_products.php">
+				  <form id="form1" name="form1" method="post" enctype="multipart/form-data" action="all_articles.php">
                   <div class="form-group">
-                    <label for="pname">Product Name</label>
-                    <input name="pname" class="form-control" type="text" id="pname" placeholder="product Name" / required>
+                    <label for="articlename">Article Name</label>
+                    <input name="articlename" class="form-control" type="text" id="articlename" placeholder="Article Name" / required>
                   </div>
 					<div class="form-group">
-					<label for="product_image1">Product Image </label>
-			              <input type="file" name="product_image1" accept="image/*" required/>
+					<label for="article_image1">Article Image </label>
+			              <input type="file" name="article_image1" accept="image/*" required/>
 					</div>
 				  <div class="form-group">
-                    <label for="product_desc">Product Description</label>
-                    <textarea name="product_desc" class="form-control" type="text" id="mytextarea" placeholder="Product Description" / required><p></p></textarea>
+                    <label for="article_desc">Article Description</label>
+                    <textarea name="article_desc" class="form-control" type="text" id="mytextarea" / required><p></p></textarea>
                   </div>
 					<input type="submit" name="insertButton" id="insertButton" value="Insert product"  class="btn btn-sm btn-default btn-flat pull-right"> 
                 </form>

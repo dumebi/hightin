@@ -1,8 +1,7 @@
 <?php 
-include('../storescripts/connect_to_mysql.php');
-include('../storescripts/crypto.php');
+include('storescripts/connect_to_mysql.php');
+include('storescripts/crypto.php');
 // This block grabs the whole list for viewing
-$user = $_SESSION['admin_manager'];
 $product_list = "";
 $shop_products = mysqli_query($conn,"select * from products") or die(mysqli_error($conn));
 $productCount = mysqli_affected_rows($conn);
@@ -60,33 +59,7 @@ if ($productCount > 0) {
     </div>
 </div>
 <!-- /PRELOADER -->
-
-<nav id="navigation" class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html" class="logo-image"></a>
-            </div>
-            <button type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#navbar"
-                    aria-expanded="false"
-                    aria-controls="navbar">
-
-                <i class="fa fa-list"></i>
-            </button>
-            <div id="navbar" class="navbar-collapse collapse">
-               <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">What we do</a></li>
-                    <li><a href="products.html">Our Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Navigation -->
+<?php include_once('header.php'); ?>
 
 <!-- MAIN -->
 <main class="main-container">
@@ -115,40 +88,7 @@ if ($productCount > 0) {
     </section>
     <!-- SECTION: /Best Feature -->
 
-    <!-- SECTION: Get-Today -->
-    <section id="get-today" class="section-small bg-green">
-        <div class="container">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <p class="txt-big txt-inline txt-white"><strong>INTERESTED?</strong></p>
-                <a class="btn btn-big btn-white-transparent" href="contact.html">Contact us now <i class="fa fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-    <!-- /SECTION: Get-Today -->
-	<!-- FOOTER -->
-<footer class="section-small">
-    <div class="container">
-        <div class="row">
-
-            <!-- Copyright -->
-            <div class="col-md-6">
-                <p>Copyright © 2016 Hightin Global Limited</p>
-            </div><!-- /Copyright -->
-
-            <!-- Social buttons -->
-            <div class="col-md-6">
-                <div class="footer-social">
-                    <a class="fa fa-facebook" href="#"></a>
-                    <a class="fa fa-twitter" href="#"></a>
-                    <a class="fa fa-google-plus" href="#"></a>
-                    <a class="fa fa-instagram" href="#"></a>
-                </div>
-            </div><!-- /Social buttons -->
-
-        </div>
-    </div>
-</footer>
-<!-- /FOOTER -->
+<?php include_once('footer.php'); ?>
 
 <!-- Scroll-To-Top -->
 <a href="#home" id="scroll-to-top" class="bg-green txt-white"><i class="fa fa-2x fa-angle-up"></i></a>

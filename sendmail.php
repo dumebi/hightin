@@ -20,33 +20,21 @@ $message = !empty($_REQUEST['message']) ? $_REQUEST['message'] : '-';
 // Forming Message
 $text = "
 
-<body>
-    <table>
-        <tr>
-            <td>Name: </td>
-            <td>$name</td>
-        </tr>
-        <tr>
-            <td>E-mail: </td>
-            <td>$email</td>
-        </tr>
-        <tr>
-            <td>Message: </td>
-            <td>$message</td>
-        </tr>
-    </table>
-</body>
+Email From: \n
+          Name: $name \n
+          E-mail: $email\n
+		  Message: $message
 ";
 
 $result = mail($to, $subject, $text);
 if($result){
 	
 				echo" <script>alert('Your message has been sent! we will get back to you shortly');</script>"; 
-				echo" <script>window.location='index.html';</script>"; 
+				echo" <script>window.location='index.php';</script>"; 
 }else{
 	
 				echo" <script>alert('Error sending message');</script>"; 
-				echo" <script>window.location='contact.html';</script>"; 
+				echo" <script>window.location='contact.php';</script>"; 
 }
 // End Buffering
 //ob_end_clean();
