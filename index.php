@@ -46,7 +46,7 @@
 
                 <i class="fa fa-list"></i>
             </button>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbars" class="navbar-collapse collapse">
                <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About Us</a></li>
@@ -95,7 +95,7 @@
         <div class="container">
             <div class="col-md-8 col-md-offset-2 text-center">
                 <p class="txt-big txt-inline txt-white"><strong>LET'S DO BUSINESS</strong></p>
-                <button class="btn btn-big btn-white-transparent"  data-toggle="modal" data-target="#get-modal">Contact us now <i class="fa fa-arrow-right"></i></button>
+                <a class="btn btn-big btn-white-transparent"  href="contact.php">Contact us now <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     </section>

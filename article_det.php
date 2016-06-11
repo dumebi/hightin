@@ -21,7 +21,7 @@ if(isset($_GET['d'])){
 					<div class="col-md-10 col-md-offset-1 text-center">
 					
                     <div class="best-feature-img">
-                        <img src="images/articleS/'.$image.'">
+                        <img src="images/articles/'.$image.'">
                     </div>
 					 <p>
 					<h3>'.$name.'</h3>
