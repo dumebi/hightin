@@ -82,18 +82,23 @@
 
                     <div class="row">
 
-                        <div class="col-md-4 text-center contact-block mt">
+                        <div class="col-md-3 text-center contact-block mt">
                             <i class="fa fa-4x fa-mobile-phone"></i>
                             <span>+2347051906860</span>
 							<span>+2348182426007</span>
                         </div>
-
-                        <div class="col-md-4 text-center contact-block mt">
+						
+                        <div class="col-md-3 text-center contact-block mt">
                             <i class="fa fa-4x fa-envelope"></i>
                             <span>info@hightinglobal.com</span>
                         </div>
-
-                        <div class="col-md-4 text-center contact-block mt">
+						
+						<div class="col-md-3 text-center contact-block mt">
+                            <i class="fa fa-4x fa-map-marker"></i>
+                            <span>11, Ifelodun street, Ogba, Lagos.</span>
+                        </div>
+						
+                        <div class="col-md-3 text-center contact-block mt">
                             <i class="fa fa-4x fa-home"></i>
                             <span>www.hightinglobal.com</span>
                         </div>
