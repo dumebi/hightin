@@ -6,9 +6,8 @@ if(isset($_GET['actionType']) && isset($_GET['usercard'])){
 			$card = $_GET['usercard'];
 			$verifyCard = mysqli_query($conn,"select * from cards where card_no=".$card."");
 			$card_result = mysqli_affected_rows($conn);
-			if ($card_result > 0) {
-				echo "Yes";
-			while($rows = mysqli_fetch_array($games_query)){
+			if ($card_result >= 1) {
+			while($rows = mysqli_fetch_array($verifyCard)){
 						$card_value = $rows['card_value'];
 					$msg[] = array("message" => $rows['card_value'], "result" => "true");
 					}
@@ -16,20 +15,17 @@ if(isset($_GET['actionType']) && isset($_GET['usercard'])){
 			else{
 				$msg[] = array("message" => "not found", "result" => "false");
 			}
-			$json = $msg;
-			 
-			header('content-type: application/json');
-			echo json_encode($json);
-			 
-			@mysqli_close($conn);
+			
 	}
 	else{
 		$msg[] = array("message" => "not found", "result" => "true");
-		$json = $msg;
+	}
+	$json = $msg;
 			 
 			header('content-type: application/json');
 			echo json_encode($json);
-	}
+						@mysqli_close($conn);
+
 }
 if(isset($_GET['actionType']) && isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password'])){
 	$actionType = $_GET['actionType'];
@@ -38,11 +34,11 @@ if(isset($_GET['actionType']) && isset($_GET['username']) && isset($_GET['email'
 			$email = $_GET['email'];
 			$password = $_GET['password'];
 			
-				$sql = "SELECT * FROM account WHERE username='$username' or email='$email'";
+				$sql = "SELECT * FROM account WHERE username='".$username."'";
 				$insert_pro = mysqli_query($conn,$sql);
 				$existCount = mysqli_affected_rows($conn); // count the row nums
-				if ($existCount >= 1) { // evaluate the count
-				   $msg[] = array("message" => "Sorry! Username/Password is taken", "result" => "false");
+				if ($existCount == 1) { // evaluate the count
+				   $msg[] = array("message" => "Sorry! Username is taken", "result" => "false");
 				} 
 				else {
 					$pass = md5($password);
@@ -70,10 +66,10 @@ if(isset($_GET['actionType']) && isset($_GET['username']) && isset($_GET['passwo
 			$email = $_GET['email'];
 			$password = $_GET['password'];
 			$pass = md5($password);
-				$sql = "SELECT * FROM account WHERE username='$username' or email='$email' and password='".$pass."'";
+				$sql = "SELECT * FROM account WHERE username='".$username."' and password='".$pass."'";
 				$insert_pro = mysqli_query($conn,$sql);
 				$existCount = mysqli_affected_rows($conn); // count the row nums
-				if ($existCount >= 1) { // evaluate the count
+				if ($existCount == 1) { // evaluate the count
 				   $msg[] = array("message" => "Welcome!", "result" => "true");
 				} 
 				else {
@@ -90,3 +86,4 @@ if(isset($_GET['actionType']) && isset($_GET['username']) && isset($_GET['passwo
 	}
 }
 ?>
+
